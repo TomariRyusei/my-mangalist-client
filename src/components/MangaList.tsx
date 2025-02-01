@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 
 import type { Manga } from "../types/manga";
@@ -7,9 +7,7 @@ export function MangaList({ mangaList: mangaList }: { mangaList: Manga[] }) {
   return (
     <Table className="w-[600px]">
       <TableHeader>
-        <TableRow>
-          <TableHead>タイトル</TableHead>
-        </TableRow>
+        <TableRow></TableRow>
       </TableHeader>
       <TableBody>
         {mangaList.map((manga) => (
