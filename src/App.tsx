@@ -1,9 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-
-interface manga {
-  id: number;
-  title: string;
-}
+import type { Manga } from "./types/manga";
+import { MangaList } from "./components/MangaList";
 
 const fetchMangaList = async () => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`);
@@ -16,7 +13,7 @@ function App() {
     isPending,
     isError,
     error,
-  } = useQuery<manga[]>({
+  } = useQuery<Manga[]>({
     queryKey: ["mangaList"],
     queryFn: fetchMangaList,
   });
@@ -33,11 +30,9 @@ function App() {
   return (
     <div className="bg-zinc-950 dark:bg-white h-screen p-10 flex flex-col items-center text-white">
       <h1 className="text-3xl font-bold mb-10">My Manga List</h1>
-      <ul className="">
-        {mangaList?.map((manga) => (
-          <li key={manga.id}>{manga.title}</li>
-        ))}
-      </ul>
+      <div>
+        <MangaList mangaList={mangaList} />
+      </div>
     </div>
   );
 }
