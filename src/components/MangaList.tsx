@@ -3,9 +3,13 @@ import { Button } from "@/components/ui/button";
 
 import type { Manga } from "../types/manga";
 
-export function MangaList({ mangaList: mangaList }: { mangaList: Manga[] }) {
+type Props = {
+  mangaList: Manga[];
+};
+
+export function MangaList({ mangaList }: Props) {
   return (
-    <Table className="w-[600px]">
+    <Table className="w-[600px] font-medium">
       <TableHeader>
         <TableRow></TableRow>
       </TableHeader>

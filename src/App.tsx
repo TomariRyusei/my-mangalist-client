@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Manga } from "./types/manga";
-import { MangaList } from "./components/MangaList";
 import { Button } from "@/components/ui/button";
+
+import { MangaList } from "./components/MangaList";
+import { Loading } from "./components/Loading";
+import ErrorPage from "./components/Error/ErrorPage";
 
 const fetchMangaList = async () => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`);
@@ -19,27 +22,18 @@ function App() {
     queryFn: fetchMangaList,
   });
 
-  if (isPending) {
-    return <div className="bg-zinc-950 min-h-full min-w-full flex justify-center text-white">Loading...</div>;
-  }
-
   if (isError) {
     console.error(error);
-    return <div className="bg-zinc-950 min-h-full min-w-full flex justify-center  text-white">Error occurred</div>;
+    return <ErrorPage />;
   }
 
   return (
     <>
       <header className="flex justify-center items-center py-8 min-w-full sticky top-0">
         <h1 className="text-3xl font-bold px-10">My Manga List</h1>
-        <Button className="" variant="secondary">
-          新規登録
-        </Button>
+        <Button>新規登録</Button>
       </header>
-      <main className="pb-10">
-        {/* ここにloadingを表示したい */}
-        <MangaList mangaList={mangaList} />
-      </main>
+      <main className="pt-3 pb-10">{isPending ? <Loading /> : <MangaList mangaList={mangaList} />}</main>
     </>
   );
 }
