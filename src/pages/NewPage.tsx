@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 
-const New = () => {
+const NewPage = () => {
   return (
     <>
       <p>It's new</p>
@@ -12,4 +12,4 @@ const New = () => {
   );
 };
 
-export default New;
+export default NewPage;
