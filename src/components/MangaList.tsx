@@ -1,28 +1,31 @@
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 import type { Manga } from "../types/manga";
+import DeleteDialog from "./DeleteDialog";
 
 type Props = {
   mangaList: Manga[];
 };
 
+const onClickDeleteManga = (id: number) => {
+  console.log(`Manga ID: ${id}`);
+};
+
 export function MangaList({ mangaList }: Props) {
   return (
-    <Table className="w-[600px] font-medium">
-      <TableHeader>
-        <TableRow></TableRow>
-      </TableHeader>
-      <TableBody>
-        {mangaList.map((manga) => (
-          <TableRow key={manga.id}>
-            <TableCell>{manga.title}</TableCell>
-            <TableCell className="text-right">
-              <Button variant="destructive">削除</Button>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <>
+      <Table className="w-[600px] font-medium">
+        <TableBody>
+          {mangaList.map(({ id, title }) => (
+            <TableRow key={id}>
+              <TableCell>{title}</TableCell>
+              <TableCell className="text-right">
+                <DeleteDialog onClickAction={() => onClickDeleteManga(id)} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
   );
 }

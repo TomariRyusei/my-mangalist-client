@@ -30,7 +30,7 @@ function App() {
 
   return (
     <>
-      <header className="flex justify-center items-center py-8 min-w-full sticky top-0">
+      <header className="flex justify-center items-center py-6 min-w-full border-b">
         <h1 className="text-3xl font-bold px-10">My Manga List</h1>
         <Link to="/new">
           <Button>新規登録</Button>
