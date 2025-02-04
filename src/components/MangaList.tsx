@@ -13,8 +13,8 @@ const onClickDeleteManga = (id: number) => {
 
 export function MangaList({ mangaList }: Props) {
   return (
-    <>
-      <Table className="w-[600px] font-medium">
+    <div className="overflow-x-auto">
+      <Table className="w-full md:min-w-[600px] font-medium">
         <TableBody>
           {mangaList.map(({ id, title }) => (
             <TableRow key={id}>
@@ -26,6 +26,6 @@ export function MangaList({ mangaList }: Props) {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }
