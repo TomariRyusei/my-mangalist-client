@@ -35,10 +35,10 @@ function App() {
 
   return (
     <>
-      <header className="flex flex-col md:flex-row gap-5 items-center justify-center py-6 px-4 min-w-full border-b">
-        <div className="flex-1"></div>
+      <header className="bg-slate-50 flex flex-col md:flex-row gap-5 items-center justify-center py-6 px-4 min-w-full border-b sticky top-0 z-10">
+        <div className="md:flex-1"></div>
         <h1 className="text-2xl md:text-3xl font-bold">My Manga List</h1>
-        <div className="flex-1">
+        <div className="md:flex-1">
           <AddNewDialog onClickAdd={() => console.log("Hello!!")}/>
         </div>
       </header>
