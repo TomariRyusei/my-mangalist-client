@@ -9,6 +9,7 @@ import NotFoundPage from './pages/NotFoundPage';
 
 const fetchMangaList = async () => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`);
+  return [];
   return res.json();
 };
 
@@ -36,8 +37,11 @@ function App() {
   return (
     <>
       <header className="flex flex-col md:flex-row gap-5 items-center justify-center py-6 px-4 min-w-full border-b">
-        <h1 className="flex-2 text-2xl md:text-3xl font-bold">My Manga List</h1>
-        <AddNewDialog onClickAdd={() => console.log("Hello!!")}/>
+        <div className="flex-1"></div>
+        <h1 className="text-2xl md:text-3xl font-bold">My Manga List</h1>
+        <div className="flex-1">
+          <AddNewDialog onClickAdd={() => console.log("Hello!!")}/>
+        </div>
       </header>
       <main className="pt-3 pb-10 px-4">{isPending ? <Loading /> : <MangaList mangaList={mangaList} />}</main>
     </>
