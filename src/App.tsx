@@ -9,7 +9,6 @@ import NotFoundPage from './pages/NotFoundPage';
 
 const fetchMangaList = async () => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`);
-  return [];
   return res.json();
 };
 
