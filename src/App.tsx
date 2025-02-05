@@ -13,11 +13,6 @@ const fetchMangaList = async () => {
 };
 
 function App() {
-  const showNotFound = window.location.pathname !== '/'
-  if (showNotFound) {
-    return <NotFoundPage />
-  }
-
   const {
     data: mangaList,
     isPending,
@@ -27,6 +22,11 @@ function App() {
     queryKey: ["mangaList"],
     queryFn: fetchMangaList,
   });
+
+  const showNotFound = window.location.pathname !== '/'
+  if (showNotFound) {
+    return <NotFoundPage />
+  }
 
   if (isError) {
     console.error(error);
