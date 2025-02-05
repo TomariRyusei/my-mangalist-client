@@ -1,5 +1,4 @@
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-
+import { Table, TableCaption, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import type { Manga } from "../types/manga";
 import DeleteDialog from "./DeleteDialog";
 
@@ -15,6 +14,7 @@ export function MangaList({ mangaList }: Props) {
   return (
     <div className="overflow-x-auto">
       <Table className="w-full md:min-w-[600px] font-medium">
+        <TableCaption>{mangaList.length}件</TableCaption>
         <TableBody>
           {mangaList.map(({ id, title }) => (
             <TableRow key={id}>

@@ -10,6 +10,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { TiDelete } from "react-icons/ti";
 
 type Props = {
   onClickAction: () => void;
@@ -19,7 +20,7 @@ const DeleteDialog = ({ onClickAction }: Props) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive">削除</Button>
+        <Button variant="destructive" className="gap-1 shadow-md"><TiDelete />削除</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
