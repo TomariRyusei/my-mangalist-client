@@ -1,6 +1,6 @@
 export async function onRequest(context) {
-  const BASIC_USER = context.env.BASIC_USER ?? "admin";
-  const BASIC_PASS = context.env.BASIC_PASS ?? "password";
+  const BASIC_USER = context.env.BASIC_USER;
+  const BASIC_PASS = context.env.BASIC_PASS;
 
   const authorization = context.request.headers.get("Authorization");
 
