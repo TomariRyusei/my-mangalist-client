@@ -9,7 +9,7 @@ const ErrorPage = ({ code = 500 }: Props) => {
 
   return (
     <div className="grid h-screen place-content-center bg-slate-50 px-4">
-      <h1 className="uppercase tracking-widest text-gray-500">500 | Internal Server Error</h1>
+      <h1 className="uppercase tracking-widest text-gray-500">An Error Has Occurred</h1>
     </div>
   );
 };

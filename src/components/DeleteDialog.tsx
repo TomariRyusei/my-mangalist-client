@@ -13,18 +13,22 @@ import { Button } from "@/components/ui/button";
 import { TiDelete } from "react-icons/ti";
 
 type Props = {
+  title: string;
   onClickAction: () => void;
 };
 
-const DeleteDialog = ({ onClickAction }: Props) => {
+const DeleteDialog = ({ title, onClickAction }: Props) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" className="gap-1 shadow-md"><TiDelete />削除</Button>
+        <Button variant="destructive" className="gap-1 shadow-md">
+          <TiDelete />
+          削除
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>本当に削除しますか？</AlertDialogTitle>
+          <AlertDialogTitle>「{title}」を削除しますか？</AlertDialogTitle>
           <AlertDialogDescription>※この操作は取り消しできません</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

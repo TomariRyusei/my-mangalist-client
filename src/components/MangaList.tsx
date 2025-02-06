@@ -20,7 +20,7 @@ export function MangaList({ mangaList }: Props) {
             <TableRow key={id}>
               <TableCell>{title}</TableCell>
               <TableCell className="text-right">
-                <DeleteDialog onClickAction={() => onClickDeleteManga(id)} />
+                <DeleteDialog title={title} onClickAction={() => onClickDeleteManga(id)} />
               </TableCell>
             </TableRow>
           ))}
