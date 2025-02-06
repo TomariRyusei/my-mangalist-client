@@ -13,14 +13,21 @@ export async function onRequest(context) {
     });
   }
 
-  const [scheme, encoded] = authorization.split(" ");
-  if (!encoded || scheme !== "Basic") {
+  if (!authorization.startsWith("Basic ")) {
     return new Response("Malformed authorization header.", { status: 400 });
   }
+  const encoded = authorization.substring(6);
 
-  const credentials = atob(encoded).split(":");
-  const user = credentials[0];
-  const pass = credentials[1];
+  let credentials;
+  try {
+    credentials = atob(encoded);
+  } catch (error) {
+    return new Response("Invalid encoding in Authorization header.", { status: 400 });
+  }
+
+  const credentialsArray = credentials.split(":");
+  const user = credentialsArray[0];
+  const pass = credentialsArray[1];
 
   if (user !== BASIC_USER || pass !== BASIC_PASS) {
     return new Response("Invalid credentials.", {
@@ -31,5 +38,5 @@ export async function onRequest(context) {
     });
   }
 
-  return await context.next();
+  return context.next();
 }
