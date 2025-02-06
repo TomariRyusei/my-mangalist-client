@@ -5,7 +5,7 @@ import { MangaList } from "./components/MangaList";
 import { Loading } from "./components/Loading";
 import AddNewDialog from "./components/AddNewDialog";
 import ErrorPage from "./pages/ErrorPage";
-// import NotFoundPage from "./pages/NotFoundPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const fetchMangaList = async () => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`);
@@ -23,10 +23,10 @@ function App() {
     queryFn: fetchMangaList,
   });
 
-  // const showNotFound = window.location.pathname !== '/'
-  // if (showNotFound) {
-  //   return <NotFoundPage />
-  // }
+  const showNotFound = window.location.pathname !== "/";
+  if (showNotFound) {
+    return <NotFoundPage />;
+  }
 
   if (isError) {
     console.error(error);

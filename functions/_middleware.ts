@@ -31,30 +31,5 @@ export async function onRequest(context) {
     });
   }
 
-  // 認証後、リクエストされたコンテンツが存在するか確認
-  let response = await context.next(); // 次のリクエストに渡す
-
-  // リダイレクトが発生した場合、リダイレクト先に再度リクエストを送る
-  if (response.status === 308) {
-    const redirectLocation = response.headers.get("Location");
-    if (redirectLocation) {
-      const redirectUrl = new URL(redirectLocation, context.request.url);
-      response = await fetch(redirectUrl.toString());
-    }
-  }
-
-  if (response.status === 304) {
-    // 304 (Not Modified) の場合、キャッシュを無効化して新しいレスポンスを取得
-    response = await fetch(context.request.url, {
-      headers: {
-        "Cache-Control": "no-cache", // キャッシュを無効化
-      },
-    });
-  }
-
-  if (!response.ok) {
-    return new Response("Page not found", { status: 404 });
-  }
-
-  return response;
+  return await context.next();
 }
