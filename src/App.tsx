@@ -39,7 +39,7 @@ function App() {
         <div className="md:flex-1"></div>
         <h1 className="text-2xl md:text-3xl font-bold">My Manga List</h1>
         <div className="md:flex-1">
-          <AddNewDialog onClickAdd={() => console.log("Hello!!!!")} />
+          <AddNewDialog onClickAdd={() => console.log("Hello!")} />
         </div>
       </header>
       <main className="pt-3 pb-10 px-4">{isPending ? <Loading /> : <MangaList mangaList={mangaList} />}</main>
