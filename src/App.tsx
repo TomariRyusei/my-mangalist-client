@@ -8,7 +8,12 @@ import ErrorPage from "./pages/ErrorPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const fetchMangaList = async () => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`);
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`, {
+    headers: {
+      "CF-Access-Client-Id": import.meta.env.CLIENT_ID ?? "",
+      "CF-Access-Client-Secret": import.meta.env.ACCESS_TOKEN ?? "",
+    },
+  });
   return res.json();
 };
 
