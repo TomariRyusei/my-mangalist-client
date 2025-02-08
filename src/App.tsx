@@ -7,10 +7,6 @@ import AddNewDialog from "./components/AddNewDialog";
 import ErrorPage from "./pages/ErrorPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
-console.log(import.meta.env.VITE_ACCESS_CLIENT_ID);
-console.log(import.meta.env.VITE_ACCESS_CLIENT_SECRET);
-console.log(import.meta.env.VITE_API_URL);
-
 const fetchMangaList = async () => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`, {
     headers: {
