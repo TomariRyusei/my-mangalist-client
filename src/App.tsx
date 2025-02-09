@@ -8,7 +8,7 @@ import ErrorPage from "./pages/ErrorPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const fetchMangaList = async () => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mangas`, {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/mangas`, {
     headers: {
       "X-API-KEY": import.meta.env.VITE_API_KEY,
       "Content-Type": "application/json",
