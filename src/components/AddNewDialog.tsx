@@ -11,12 +11,15 @@ import {
 import { Input } from "@/components/ui/input";
 
 type Props = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  setTitle: (title: string) => void;
   onClickAdd: () => void;
 };
 
-const AddNewDialog = ({ onClickAdd }: Props) => {
+const AddNewDialog = ({ open, setOpen, setTitle, onClickAdd }: Props) => {
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="w-full shadow-md md:w-auto">新規登録</Button>
       </DialogTrigger>
@@ -27,7 +30,7 @@ const AddNewDialog = ({ onClickAdd }: Props) => {
         </DialogHeader>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Input id="title" />
+            <Input id="title" onChange={(e) => setTitle(e.target.value)} />
           </div>
         </div>
         <DialogFooter>
