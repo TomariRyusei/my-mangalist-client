@@ -26,7 +26,7 @@ export const useAddManga = () => {
 
   return useMutation({
     mutationFn: async (title: string) => {
-      await fetch(`${API_URL}/mangas`, {
+      const res = await fetch(`${API_URL}/mangas`, {
         method: "POST",
         headers: {
           "X-API-KEY": API_KEY,
@@ -34,9 +34,21 @@ export const useAddManga = () => {
         },
         body: JSON.stringify({ title }),
       });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || `Request failed with status ${res.status}`);
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["mangaList"] });
+    },
+    onError: (error) => {
+      if (error instanceof Error) {
+        alert(`An error occurred: ${error.message}`);
+      } else {
+        alert("An unknown error occurred");
+      }
     },
   });
 };
@@ -46,16 +58,28 @@ export const useDeleteManga = () => {
 
   return useMutation({
     mutationFn: async (id: number) => {
-      await fetch(`${API_URL}/mangas/${id}`, {
+      const res = await fetch(`${API_URL}/mangas/${id}`, {
         method: "DELETE",
         headers: {
           "X-API-KEY": API_KEY,
           "Content-Type": "application/json",
         },
       });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || `Request failed with status ${res.status}`);
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["mangaList"] });
+    },
+    onError: (error) => {
+      if (error instanceof Error) {
+        alert(`An error occurred: ${error.message}`);
+      } else {
+        alert("An unknown error occurred");
+      }
     },
   });
 };

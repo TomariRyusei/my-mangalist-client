@@ -44,7 +44,9 @@ const AddNewDialog = ({ open, setOpen }: Props) => {
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={handleAdd}>登録</Button>
+          <Button onClick={handleAdd} disabled={!title.length}>
+            登録
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
