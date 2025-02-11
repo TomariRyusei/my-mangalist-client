@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,14 +11,23 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
+import { useAddManga } from "@/hooks/useManga";
+
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
-  setTitle: (title: string) => void;
-  onClickAdd: () => void;
 };
 
-const AddNewDialog = ({ open, setOpen, setTitle, onClickAdd }: Props) => {
+const AddNewDialog = ({ open, setOpen }: Props) => {
+  const [title, setTitle] = useState("");
+  const addMangaMutation = useAddManga();
+  const handleAdd = () => {
+    if (!title.trim()) return;
+    addMangaMutation.mutate(title);
+    setTitle("");
+    setOpen(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -34,7 +44,7 @@ const AddNewDialog = ({ open, setOpen, setTitle, onClickAdd }: Props) => {
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={onClickAdd}>登録</Button>
+          <Button onClick={handleAdd}>登録</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

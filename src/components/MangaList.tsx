@@ -1,32 +1,19 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Table, TableCaption, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import type { Manga } from "../types/manga";
 import DeleteDialog from "./DeleteDialog";
 import ErrorPage from "@/pages/ErrorPage";
+
+import { useDeleteManga } from "../hooks/useManga";
 
 type Props = {
   mangaList: Manga[];
 };
 
 export function MangaList({ mangaList }: Props) {
-  const queryClient = useQueryClient();
+  const deleteMangaMutation = useDeleteManga();
 
-  const mutation = useMutation({
-    mutationFn: async (id: number) => {
-      await fetch(`${import.meta.env.VITE_API_URL}/mangas/${id}`, {
-        method: "DELETE",
-        headers: {
-          "X-API-KEY": import.meta.env.VITE_API_KEY,
-          "Content-Type": "application/json",
-        },
-      });
-
-      return await queryClient.invalidateQueries({ queryKey: ["mangaList"] });
-    },
-  });
-
-  if (mutation.error) {
-    console.error(mutation.error);
+  if (deleteMangaMutation.error) {
+    console.error(deleteMangaMutation.error);
     return <ErrorPage />;
   }
 
@@ -39,7 +26,7 @@ export function MangaList({ mangaList }: Props) {
             <TableRow key={id}>
               <TableCell>{title}</TableCell>
               <TableCell className="text-right">
-                <DeleteDialog title={title} onClickAction={() => mutation.mutate(id)} />
+                <DeleteDialog title={title} onClickAction={() => deleteMangaMutation.mutate(id)} />
               </TableCell>
             </TableRow>
           ))}
