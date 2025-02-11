@@ -35,8 +35,8 @@ export function MangaList({ mangaList }: Props) {
       <Table className="w-full md:min-w-[600px] font-medium">
         <TableCaption>{mangaList.length}件</TableCaption>
         <TableBody>
-          {mangaList.map(({ id, title }) => (
-            <TableRow key={id}>
+          {mangaList.map(({ id, title }, index) => (
+            <TableRow key={index}>
               <TableCell>{title}</TableCell>
               <TableCell className="text-right">
                 <DeleteDialog title={title} onClickAction={() => mutation.mutate(id)} />
