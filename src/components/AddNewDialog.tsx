@@ -40,7 +40,7 @@ const AddNewDialog = ({ open, setOpen }: Props) => {
         </DialogHeader>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Input id="title" onChange={(e) => setTitle(e.target.value)} />
+            <Input id="title" onChange={(e) => setTitle(e.target.value)} type="text" max="50"/>
           </div>
         </div>
         <DialogFooter>
